@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 412" width="960" height="412" role="img"
+     aria-label="Timeline of 2026-02-06 from 02:42 to 05:30 UTC on host ip-10-1-15-67. Sysmon process-creation telemetry stops at 03:08:19 and never resumes. The first attacker request arrives 39 minutes later at 03:47:32, so the entire intrusion through 05:02:17 falls inside the resulting blind window. auditd is deactivated at 02:53:31 but restarted at 03:23:09 and covers the whole intrusion, which is why process evidence survived.">
+
+  <rect x="0" y="0" width="960" height="412" fill="#0f172a"/>
+
+  <text x="30" y="34" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="600" fill="#e2e8f0">Meridian — the blind spot was self-inflicted</text>
+  <text x="30" y="55" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#94a3b8">2026-02-06 UTC · host ip-10-1-15-67</text>
+
+  <!-- blind window: sysmon stop through end of scope -->
+  <rect x="259" y="74" width="641" height="196" fill="#ef4444" fill-opacity="0.07"/>
+  <line x1="259" y1="74" x2="259" y2="270" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="267" y="88" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#fca5a5">no Sysmon process-creation records after this point</text>
+
+  <!-- sysmon -->
+  <text x="130" y="119" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#e2e8f0">sysmon.service</text>
+  <rect x="140" y="105" width="119" height="16" rx="3" fill="#22c55e"/>
+  <line x1="259" y1="113" x2="900" y2="113" stroke="#ef4444" stroke-width="2" stroke-dasharray="5 4"/>
+  <circle cx="259" cy="113" r="4.5" fill="#0f172a" stroke="#ef4444" stroke-width="2"/>
+  <text x="267" y="137" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#fca5a5">03:08:19 deactivated — never restarted</text>
+
+  <!-- auditd -->
+  <text x="130" y="176" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#e2e8f0">auditd.service</text>
+  <rect x="140" y="162" width="52" height="16" rx="3" fill="#38bdf8"/>
+  <line x1="192" y1="170" x2="326" y2="170" stroke="#64748b" stroke-width="2" stroke-dasharray="4 3"/>
+  <rect x="326" y="162" width="574" height="16" rx="3" fill="#38bdf8"/>
+  <text x="334" y="194" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#7dd3fc">03:23:09 restarted — covers the whole intrusion</text>
+
+  <!-- attacker -->
+  <text x="130" y="238" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#e2e8f0">attacker activity</text>
+  <rect x="437" y="224" width="338" height="16" rx="3" fill="#f59e0b"/>
+  <text x="437" y="257" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#fcd34d">03:47:32 first request</text>
+  <text x="775" y="257" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#fcd34d">05:02:17 last callback</text>
+
+  <!-- the gap -->
+  <line x1="259" y1="292" x2="437" y2="292" stroke="#f8fafc" stroke-width="1.5"/>
+  <line x1="259" y1="287" x2="259" y2="297" stroke="#f8fafc" stroke-width="1.5"/>
+  <line x1="437" y1="287" x2="437" y2="297" stroke="#f8fafc" stroke-width="1.5"/>
+  <text x="348" y="285" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" font-weight="600" fill="#f8fafc">39 min</text>
+  <text x="348" y="311" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#94a3b8">telemetry lost before the attacker arrived</text>
+
+  <!-- axis -->
+  <line x1="140" y1="338" x2="900" y2="338" stroke="#334155" stroke-width="1"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#64748b" text-anchor="middle">
+    <line x1="221" y1="338" x2="221" y2="343" stroke="#334155"/><text x="221" y="357">03:00</text>
+    <line x1="357" y1="338" x2="357" y2="343" stroke="#334155"/><text x="357" y="357">03:30</text>
+    <line x1="493" y1="338" x2="493" y2="343" stroke="#334155"/><text x="493" y="357">04:00</text>
+    <line x1="629" y1="338" x2="629" y2="343" stroke="#334155"/><text x="629" y="357">04:30</text>
+    <line x1="764" y1="338" x2="764" y2="343" stroke="#334155"/><text x="764" y="357">05:00</text>
+    <line x1="900" y1="338" x2="900" y2="343" stroke="#334155"/><text x="900" y="357">05:30</text>
+  </g>
+
+  <text x="30" y="385" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#64748b">The estate's own automated sweep stopped Sysmon. Losing it cost process-creation and command-line</text>
+  <text x="30" y="400" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#64748b">visibility — not all process evidence. auditd carried the SUID escalation and the forensic capture.</text>
+</svg>

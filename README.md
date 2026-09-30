@@ -16,6 +16,8 @@ On 6 February 2026 an external actor scanned the Meridian healthcare web applica
 
 Two things make this incident worth reading about. The response did not contain it — a masqueraded backdoor named `health_check` was flagged by the automated sweep and then left running, with effective root, through every subsequent action including the forensic capture. And the single largest gap in the evidence was not the attacker's doing: the estate's own remediation stopped Linux Sysmon 39 minutes *before* the intrusion began, eliminating process-creation and command-line visibility for the entire incident. What remained — auditd, auth, syslog and Defender records — is what the chain in this report had to be rebuilt from.
 
+![Timeline showing the confirmed patient data export at 03:56:28, 11 minutes before the file disclosure at 04:07:59 and 43 minutes before SUID root at 04:40:15](docs/intrusion-chain.svg)
+
 > **If you read one section, read [Analyst pivot](#analyst-pivot-re-testing-the-telemetry-gap-hypothesis).** Identifying that self-inflicted blind spot took several wrong answers first, and the reason they were wrong is the most useful thing in this report.
 
 ## Hypothesis
@@ -338,6 +340,8 @@ Sequencing, stated precisely: the automated sweep had already remediated `/tmp/r
 
 ## Analyst pivot: re-testing the telemetry-gap hypothesis
 
+![Timeline showing sysmon.service deactivated at 03:08:19 and never restarted, 39 minutes before the first attacker request at 03:47:32, while auditd restarted at 03:23:09 and covered the whole intrusion](docs/sysmon-blind-spot.svg)
+
 The hunt's hardest question was which legitimate service the first automated sweep removed, and what that cost the investigation. My initial answer was wrong, and the way it was wrong is worth recording.
 
 The candidate I committed to was `meridian-netmon.service`, and the supporting reasoning was genuinely strong:
@@ -450,7 +454,10 @@ This hunt scoped to the intrusion chain and the response gap. The following were
 
 ```text
 Threat-Hunt-Meridian-Healthcare/
-└── README.md
+├── README.md
+└── docs/
+    ├── intrusion-chain.svg
+    └── sysmon-blind-spot.svg
 ```
 
 ---

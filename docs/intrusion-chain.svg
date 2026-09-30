@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" role="img"
+     aria-label="Timeline of the Meridian intrusion on 2026-02-06. Reconnaissance begins 03:47:32 and content discovery runs from 03:55:05. The confirmed patient data export occurs at 03:56:28, before any credential theft. Local file inclusion at 04:07:59 leads to the svc_backup login at 04:09:31, and SUID root is obtained at 04:40:15. The entire escalation chain happens after the data was already gone.">
+
+  <rect x="0" y="0" width="960" height="400" fill="#0f172a"/>
+
+  <text x="30" y="34" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="600" fill="#e2e8f0">Meridian — the data was gone before the escalation began</text>
+  <text x="30" y="55" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="12" fill="#94a3b8">2026-02-06 UTC · host ip-10-1-15-67 · attacker 10.1.134.57</text>
+
+  <!-- post-export region -->
+  <rect x="208" y="80" width="692" height="230" fill="#f59e0b" fill-opacity="0.05"/>
+
+  <!-- export marker -->
+  <line x1="208" y1="80" x2="208" y2="310" stroke="#ef4444" stroke-width="2.5"/>
+  <text x="218" y="112" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" font-weight="600" fill="#fca5a5">03:56:28 — patient data export</text>
+  <text x="218" y="131" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11.5" fill="#fca5a5">confirmed, application layer, not blocked</text>
+
+  <!-- recon + gobuster (pre-export) -->
+  <text x="100" y="176" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#cbd5e1">03:47:32 recon</text>
+  <text x="200" y="196" text-anchor="end" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#cbd5e1">03:55:05 gobuster</text>
+
+  <!-- axis -->
+  <line x1="100" y1="230" x2="900" y2="230" stroke="#334155" stroke-width="1.5"/>
+  <circle cx="124" cy="230" r="5" fill="#64748b"/>
+  <circle cx="195" cy="230" r="5" fill="#64748b"/>
+  <circle cx="208" cy="230" r="7" fill="#ef4444"/>
+  <circle cx="316" cy="230" r="5" fill="#f59e0b"/>
+  <circle cx="331" cy="230" r="5" fill="#f59e0b"/>
+  <circle cx="620" cy="230" r="5" fill="#f59e0b"/>
+
+  <!-- post-export events -->
+  <text x="316" y="262" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#fcd34d">04:07:59 file disclosure</text>
+  <text x="316" y="279" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#fcd34d">04:09:31 svc_backup login (57s later)</text>
+  <text x="620" y="196" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#fcd34d">04:40:15 SUID root obtained</text>
+
+  <!-- blocked C2 -->
+  <rect x="697" y="255" width="130" height="12" rx="3" fill="#475569"/>
+  <text x="697" y="284" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" fill="#94a3b8">73 blocked callbacks</text>
+
+  <!-- bracket: escalation chain -->
+  <line x1="316" y1="322" x2="827" y2="322" stroke="#f59e0b" stroke-width="1.5"/>
+  <line x1="316" y1="316" x2="316" y2="328" stroke="#f59e0b" stroke-width="1.5"/>
+  <line x1="827" y1="316" x2="827" y2="328" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="571" y="345" text-anchor="middle" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11.5" fill="#fcd34d">the escalation chain — all of it after the data was already gone</text>
+
+  <!-- ticks -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="10" fill="#64748b" text-anchor="middle">
+    <line x1="241" y1="230" x2="241" y2="236" stroke="#334155"/><text x="241" y="249">04:00</text>
+    <line x1="524" y1="230" x2="524" y2="236" stroke="#334155"/><text x="524" y="249">04:30</text>
+    <line x1="806" y1="230" x2="806" y2="236" stroke="#334155"/><text x="806" y="249">05:00</text>
+  </g>
+
+  <text x="30" y="378" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="11" fill="#64748b">The export preceded the file disclosure by 11 min 31 s and root by 43 min 47 s. The chain that reached root was not the exfiltration path.</text>
+</svg>
